@@ -1,0 +1,39 @@
+SYNTHETIC FAQ/WEBHOOK DEMO VERIFICATION RECEIPT
+Run UTC: 2026-10-17T18:36:58Z
+Python: Python 3.9.6
+
+COMMAND: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v test_faq_bot_demo.py
+test_blank_contact_is_rejected_without_state (test_faq_bot_demo.FAQBotTests) ... ok
+test_booking_with_trusted_receipt_can_be_confirmed (test_faq_bot_demo.FAQBotTests) ... ok
+test_booking_without_receipt_is_not_confirmed (test_faq_bot_demo.FAQBotTests) ... ok
+test_cross_contact_opt_out_isolation (test_faq_bot_demo.FAQBotTests) ... ok
+test_customer_claim_of_confirmation_is_not_receipt (test_faq_bot_demo.FAQBotTests) ... ok
+test_duplicate_inbound_has_no_second_draft (test_faq_bot_demo.FAQBotTests) ... ok
+test_known_hours_returns_draft (test_faq_bot_demo.FAQBotTests) ... ok
+test_missing_id_is_rejected_without_state (test_faq_bot_demo.FAQBotTests) ... ok
+test_oversized_text_is_rejected_without_state (test_faq_bot_demo.FAQBotTests) ... ok
+test_pricing_does_not_invent_price (test_faq_bot_demo.FAQBotTests) ... ok
+test_same_message_id_other_contact_is_not_duplicate (test_faq_bot_demo.FAQBotTests) ... ok
+test_start_reopens_only_that_contact (test_faq_bot_demo.FAQBotTests) ... ok
+test_stop_gates_later_faq (test_faq_bot_demo.FAQBotTests) ... ok
+test_stop_is_case_and_whitespace_insensitive (test_faq_bot_demo.FAQBotTests) ... ok
+test_unknown_faq_queues_handoff (test_faq_bot_demo.FAQBotTests) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.000s
+
+OK
+exit=0
+
+COMMAND: PYTHONDONTWRITEBYTECODE=1 python3 faq_bot_demo.py --demo
+{"event": {"contact_id": "demo-A", "message_id": "m1", "text": "hours"}, "decision": {"action": "draft_reply", "text": "Demo hours: Monday to Friday, 9:00–17:00."}}
+{"event": {"contact_id": "demo-A", "message_id": "m1", "text": "hours"}, "decision": {"action": "none", "reason": "duplicate_inbound"}}
+{"event": {"contact_id": "demo-A", "message_id": "m2", "text": "STOP"}, "decision": {"action": "none", "reason": "opted_out"}}
+{"event": {"contact_id": "demo-A", "message_id": "m3", "text": "pricing"}, "decision": {"action": "none", "reason": "opted_out"}}
+{"event": {"contact_id": "demo-B", "message_id": "m1", "text": "pricing"}, "decision": {"action": "draft_reply", "text": "Demo pricing: request a quote from the team."}}
+{"event": {"contact_id": "demo-A", "message_id": "m4", "text": "START"}, "decision": {"action": "draft_reply", "text": "Message drafts are enabled again."}}
+{"event": {"contact_id": "demo-A", "message_id": "m5", "text": "book an appointment"}, "decision": {"action": "draft_reply", "text": "Booking request noted; no booking is confirmed yet."}}
+{"event": {"contact_id": "demo-A", "message_id": "m6", "text": "Where is my parcel?"}, "decision": {"action": "handoff_queue", "reason": "unknown_faq"}}
+exit=0
+
+VERDICT: PASS for fifteen local synthetic state-machine tests. No Meta, n8n, provider, or network execution was used.
